@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Flight
+from .models import Flight, Passenger
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 # Create your views here.
@@ -11,7 +11,8 @@ def flight(request, flight_id):
     passengers = flight.passengers.all()
     return render(request, "flights/flight.html",
                   {"flight": flight,
-                   "passengers": passengers})
+                   "passengers": passengers,
+                   "non_passengers": Passenger.objects.exclude(flights=flight).all})
 
 def book(request, flight_id):
     if request.method == "POST":
