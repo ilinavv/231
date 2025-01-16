@@ -11,3 +11,5 @@ def flight(request, flight_id):
     return render(request, "flights/flight.html",
                   {"flight": flight,
                    "passengers": passengers})
+
+def book(request, flight_id)
